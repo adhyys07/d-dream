@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8w2qrv1fjuuh"]
+
+[ext_resource type="Texture2D" uid="uid://djwls2gqhum0u" path="res://assets/hand_assets/2025_10_04_0pz_Kleki.png" id="1_h2liu"]
+[ext_resource type="Script" uid="uid://beoddu0ulrbe8" path="res://scenes/characters/follow_enemy.gd" id="1_krgbn"]
+[ext_resource type="Texture2D" uid="uid://dcq5tj4t24lhy" path="res://assets/hand_assets/2025_10_04_0q2_Kleki.png" id="2_a8x0k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a8x0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h2liu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a8x0k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmkw4"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5x2f"]
+radius = 7.0
+height = 26.0
+
+[node name="Enemy1" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("1_krgbn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(0.02783, 0.0438544)
+sprite_frames = SubResource("SpriteFrames_a8x0k")
+autoplay = "default"
+frame = 1
+frame_progress = 0.6695789
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_wmkw4")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_n5x2f")
+
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+one_shot = true

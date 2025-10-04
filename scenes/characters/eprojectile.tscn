@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dba7ahbghnbxq"]
+
+[ext_resource type="Script" uid="uid://c76rvid0hgrdb" path="res://scenes/characters/eprojectile.gd" id="1_bgmlw"]
+[ext_resource type="Texture2D" uid="uid://dvak0ag53s871" path="res://assets/hand_assets/2025_10_04_0rh_Kleki.png" id="1_e0d20"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bgmlw"]
+radius = 11.956511
+height = 24.999977
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_bgmlw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-17.000015, 16.000008)
+scale = Vector2(0.23018868, 0.14613779)
+texture = ExtResource("1_e0d20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.8400016, 1)
+shape = SubResource("CapsuleShape2D_bgmlw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
