@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://skd4y8as0rx3"
-path="res://.godot/imported/background.jpg-355b20ebe6f88a1aa6a1506a5241a611.ctex"
+uid="uid://b53qqqbmt07vv"
+path="res://.godot/imported/paper-20-2225906236.png-e1a569d9d440d10839c9bb05fd3d5de7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/Assets/background.jpg"
-dest_files=["res://.godot/imported/background.jpg-355b20ebe6f88a1aa6a1506a5241a611.ctex"]
+source_file="res://assets/l_assets/paper-20-2225906236.png"
+dest_files=["res://.godot/imported/paper-20-2225906236.png-e1a569d9d440d10839c9bb05fd3d5de7.ctex"]
 
 [params]
 
