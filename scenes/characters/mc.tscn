@@ -162,8 +162,10 @@ height = 52.0
 
 [node name="mc" type="Node2D"]
 
-[node name="main_character" type="CharacterBody2D" parent="."]
+[node name="main_character" type="CharacterBody2D" parent="." node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
 script = ExtResource("1_mi4vj")
+PlayerSprite = NodePath("AnimatedSprite2D")
+PlayerCollider = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
 sprite_frames = SubResource("SpriteFrames_3n4xf")
