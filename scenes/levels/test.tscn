@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://blflj702phan5"]
+
+[ext_resource type="PackedScene" uid="uid://y5npnb6oqfxm" path="res://scenes/characters/mc.tscn" id="1_8153q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_52kye"]
+distance = -330.0
+
+[node name="Test" type="Node2D"]
+position = Vector2(352, -428)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_52kye")
+
+[node name="mc" parent="." instance=ExtResource("1_8153q")]
+position = Vector2(30, 296)
