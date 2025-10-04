@@ -1,3 +1,44 @@
-[gd_scene format=3 uid="uid://y5npnb6oqfxm"]
+[gd_scene load_steps=3 format=3 uid="uid://y5npnb6oqfxm"]
 
-[node name="Mc" type="Node2D"]
+[ext_resource type="Script" uid="uid://d0sta7ey3r0co" path="res://scripts/mc.gd" id="1_1l6gi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3n4xf"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack-g",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attack-s",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sprint",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"wall_climb",
+"speed": 5.0
+}]
+
+[node name="mc" type="Node2D"]
+script = ExtResource("1_1l6gi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3n4xf")
+animation = &"wall_climb"
+autoplay = "idle"

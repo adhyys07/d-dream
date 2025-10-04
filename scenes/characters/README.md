@@ -4,7 +4,7 @@ These nodes must be attached as a child of the CharacterBody2D node for it to fu
 
 Max Speed (float)
 The max speed your player will move.
-
+	
 Time to Reach Max Speed (float)
 How fast your player will reach max speed from rest.
 
