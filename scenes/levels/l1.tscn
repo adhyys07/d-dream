@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://bwwwo738yd8ay"]
+[gd_scene load_steps=2 format=3 uid="uid://bwwwo738yd8ay"]
+
+[ext_resource type="Texture2D" uid="uid://dtstsj174kpt1" path="res://assets/l_assets/bg3.png" id="1_ynohy"]
 
 [node name="L1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 6.0
+offset_right = 1271.0
+offset_bottom = 728.0
+texture = ExtResource("1_ynohy")
+expand_mode = 1
