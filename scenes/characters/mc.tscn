@@ -147,7 +147,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_bnwgv")
 }],
 "loop": true,
-"name": &"sprint",
+"name": &"walk",
 "speed": 15.0
 }, {
 "frames": [],
@@ -169,7 +169,7 @@ PlayerCollider = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
 sprite_frames = SubResource("SpriteFrames_3n4xf")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main_character"]
