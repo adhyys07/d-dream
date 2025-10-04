@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bno3h31pdt7w8"]
+[gd_scene load_steps=0 format=3 uid="uid://bno3h31pdt7w8"]
 
 [node name="Enemy2" type="Node2D"]
 
