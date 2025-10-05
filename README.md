@@ -20,6 +20,8 @@ Made with love (and graphite) in GODOT
 
 Another peek at the notebook's crinkly welcome—PLAY awaits!
 
+![image alt](https://github.com/adhyys07/d-dream/blob/main/Screenshot%202025-10-05%20173536.png?raw=true)
+
 
 All assets were handdrawn except the main character.
 Readme file with the courtesy of Grok
