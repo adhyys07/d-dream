@@ -14,13 +14,11 @@ var is_dead: bool = false
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 
-# store original positions
-var attack_area_pos: Vector2
-var attack_shape_pos: Vector2
+# store original offset of attack relative to player
+var attack_offset: Vector2
 
 func _ready() -> void:
-	attack_area_pos = attack_area.position
-	attack_shape_pos = attack_shape.position
+	attack_offset = attack_area.position
 	attack_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
@@ -58,13 +56,9 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("idle")
 			attack_shape.disabled = true
 
-	# --- Flip attack collision properly ---
-	if animated_sprite.flip_h:
-		attack_area.position.x = -attack_area_pos.x
-		attack_shape.position.x = -attack_shape_pos.x
-	else:
-		attack_area.position = attack_area_pos
-		attack_shape.position = attack_shape_pos
+	# --- Move AttackArea in front of player without flipping collision ---
+	attack_area.position.x = attack_offset.x if not animated_sprite.flip_h else -attack_offset.x
+	attack_area.position.y = attack_offset.y
 
 	move_and_slide()
 
