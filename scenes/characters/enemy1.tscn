@@ -51,6 +51,8 @@ autoplay = "walk"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(-51, -128)
+disable_mode = 2
+collision_layer = 3
 script = SubResource("GDScript_krgbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
