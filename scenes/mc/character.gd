@@ -25,8 +25,10 @@ func _physics_process(delta: float) -> void:
 	var speed
 	if  Input.is_action_pressed('dash'):
 		speed = run_SPEED
+		$AnimatedSprite2D.animation('run')
 	else:
 		speed = walk_SPEED
+		$AnimatedSprite2D.animation('idle')
 
 	var direction := Input.get_axis("left", "right")
 	if direction:

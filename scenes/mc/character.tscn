@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv1qncivk81gg"]
+[gd_scene load_steps=19 format=3 uid="uid://cv1qncivk81gg"]
 
 [ext_resource type="Script" uid="uid://2na1w0bfi43v" path="res://scenes/mc/character.gd" id="1_t3ymk"]
 [ext_resource type="Texture2D" uid="uid://bdqfnx65jayl1" path="res://scenes/mc/Animation Sprite Sheets (PNG)/PassiveIdleReaper-Sheet.png" id="1_w57xx"]
+[ext_resource type="Texture2D" uid="uid://c5mgtdhcpvx3i" path="res://scenes/mc/Animation Sprite Sheets (PNG)/PassiveRunningReaper-Sheet.png" id="3_oxhy5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3ymk"]
 
@@ -25,6 +26,38 @@ region = Rect2(144, 0, 48, 48)
 atlas = ExtResource("1_w57xx")
 region = Rect2(192, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyk6d"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqbob"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggesh"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky7pl"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0c2d"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ytcx"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi5so"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wqm2"]
+atlas = ExtResource("3_oxhy5")
+region = Rect2(336, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lyk6d"]
 animations = [{
 "frames": [{
@@ -44,8 +77,37 @@ animations = [{
 "texture": SubResource("AtlasTexture_6xqna")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyk6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqbob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggesh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky7pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0c2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ytcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi5so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wqm2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
 }]
 
 [node name="Character" type="CharacterBody2D" groups=["player"]]
@@ -57,8 +119,8 @@ shape = SubResource("CapsuleShape2D_t3ymk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lyk6d")
-autoplay = "default"
-frame_progress = 0.6489849
+animation = &"run"
+autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
