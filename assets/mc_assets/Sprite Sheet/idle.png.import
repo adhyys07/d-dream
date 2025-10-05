@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gqah7gkvs7hf"
-path="res://.godot/imported/HostileAttackReaper-Sheet.png-7f1e8d5a40320cc1aea1f4ab65fb3911.ctex"
+uid="uid://bskw2hvyhqqbi"
+path="res://.godot/imported/idle.png-408c703f78a67c41170717f7c8771c8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/mc/Animation Sprite Sheets (PNG)/HostileAttackReaper-Sheet.png"
-dest_files=["res://.godot/imported/HostileAttackReaper-Sheet.png-7f1e8d5a40320cc1aea1f4ab65fb3911.ctex"]
+source_file="res://assets/mc_assets/Sprite Sheet/idle.png"
+dest_files=["res://.godot/imported/idle.png-408c703f78a67c41170717f7c8771c8d.ctex"]
 
 [params]
 

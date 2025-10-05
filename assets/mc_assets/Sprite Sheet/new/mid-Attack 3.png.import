@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5mgtdhcpvx3i"
-path="res://.godot/imported/PassiveRunningReaper-Sheet.png-42b823e2906939d0a43050dfa61b61c1.ctex"
+uid="uid://cuqmwnbe1d1hl"
+path="res://.godot/imported/mid-Attack 3.png-68f7015cea7973e0be9337914707cac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/mc/Animation Sprite Sheets (PNG)/PassiveRunningReaper-Sheet.png"
-dest_files=["res://.godot/imported/PassiveRunningReaper-Sheet.png-42b823e2906939d0a43050dfa61b61c1.ctex"]
+source_file="res://assets/mc_assets/Sprite Sheet/new/mid-Attack 3.png"
+dest_files=["res://.godot/imported/mid-Attack 3.png-68f7015cea7973e0be9337914707cac3.ctex"]
 
 [params]
 

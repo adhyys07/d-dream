@@ -6,11 +6,11 @@
 [node name="MainMenu" type="Node2D"]
 
 [node name="202510040LoKleki" type="Sprite2D" parent="."]
-position = Vector2(590, 467)
-scale = Vector2(0.5163477, 0.47286823)
+position = Vector2(561.8906, 464.87497)
+scale = Vector2(0.33208722, 0.38081396)
 texture = ExtResource("1_fe2o3")
 
 [node name="202510040LqKleki" type="Sprite2D" parent="."]
-position = Vector2(593.00006, 322)
-scale = Vector2(0.4277312, 0.4670542)
+position = Vector2(583.00006, 342.00003)
+scale = Vector2(0.2840409, 0.32267436)
 texture = ExtResource("2_1g8jr")

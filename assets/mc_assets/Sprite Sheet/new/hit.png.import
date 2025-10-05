@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1sst4ak7ro20"
-path="res://.godot/imported/WieldWeaponReaper-Sheet.png-5dc8799e712ba897dffeed912cac1fb9.ctex"
+uid="uid://2klsvb5dv7gs"
+path="res://.godot/imported/hit.png-cd6d4fc2de42ef3f02822cefe7fb94b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/mc/Animation Sprite Sheets (PNG)/WieldWeaponReaper-Sheet.png"
-dest_files=["res://.godot/imported/WieldWeaponReaper-Sheet.png-5dc8799e712ba897dffeed912cac1fb9.ctex"]
+source_file="res://assets/mc_assets/Sprite Sheet/new/hit.png"
+dest_files=["res://.godot/imported/hit.png-cd6d4fc2de42ef3f02822cefe7fb94b6.ctex"]
 
 [params]
 
