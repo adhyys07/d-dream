@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8w2qrv1fjuuh"]
 
 [ext_resource type="Texture2D" uid="uid://djwls2gqhum0u" path="res://assets/hand_assets/2025_10_04_0pz_Kleki.png" id="1_h2liu"]
-[ext_resource type="Script" uid="uid://beoddu0ulrbe8" path="res://scenes/characters/follow_enemy.gd" id="1_krgbn"]
+[ext_resource type="Script" uid="uid://beoddu0ulrbe8" path="res://scripts/follow_enemy.gd" id="1_krgbn"]
 [ext_resource type="Texture2D" uid="uid://dcq5tj4t24lhy" path="res://assets/hand_assets/2025_10_04_0q2_Kleki.png" id="2_a8x0k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8x0k"]

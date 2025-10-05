@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bno3h31pdt7w8"]
 
-[ext_resource type="Script" uid="uid://4t4wepyiweyf" path="res://scenes/characters/enemy_2.gd" id="1_fkx4o"]
+[ext_resource type="Script" uid="uid://4t4wepyiweyf" path="res://scripts/enemy_2.gd" id="1_fkx4o"]
 [ext_resource type="Texture2D" uid="uid://5wjef34xljq2" path="res://assets/hand_assets/2025_10_04_0rd_Kleki.png" id="2_c07dn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y821r"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://y5npnb6oqfxm"]
 
-[ext_resource type="Script" uid="uid://b4fum2qn6tpev" path="res://scenes/characters/main_character.gd" id="1_mi4vj"]
+[ext_resource type="Script" uid="uid://b4fum2qn6tpev" path="res://scripts/main_character.gd" id="1_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://vcwt1wjbdwsf" path="res://assets/c_assets/Thin.png" id="2_cemo4"]
 [ext_resource type="Texture2D" uid="uid://dolakefxpvcqw" path="res://assets/c_assets/JumpUp.png" id="3_tclne"]
 [ext_resource type="Texture2D" uid="uid://danw5p4jmd366" path="res://assets/c_assets/JumpDown.png" id="4_kwoov"]
@@ -201,7 +201,6 @@ upToCancel = null
 run = null
 jump = null
 idle = null
-walk = null
 slide = null
 latch = null
 falling = null
