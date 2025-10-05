@@ -14,11 +14,13 @@ var is_dead: bool = false
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 
+
 var attack_offset: Vector2
 
 func _ready() -> void:
 	attack_offset = attack_area.position
 	attack_shape.disabled = true
+	$AttackArea2/CollisionShape2D.disabled = true
 
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
+		$AttackArea2/CollisionShape2D.disabled = false
 		velocity.x = 0
 		$Timer.start()
 		return
@@ -49,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack_r") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
+		$AttackArea2/CollisionShape2D.disabled = false
 		velocity.x = 0
 		animated_sprite.play("attack-f")
 		return
@@ -56,6 +60,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack_w") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
+		$AttackArea2/CollisionShape2D.disabled = false 
 		velocity.x = 0
 		animated_sprite.play("attack-s")
 		return
@@ -82,6 +87,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	var anim = animated_sprite.animation
 	if anim == "attack-r" or anim == "attack-f":
 		attack_shape.disabled = true
+		$AttackArea2/CollisionShape2D.disabled = true
 		isSAttacking = false
 
 
@@ -96,4 +102,5 @@ func die() -> void:
 
 func _on_timer_timeout() -> void:
 	attack_shape.disabled = true
+	$AttackArea2/CollisionShape2D.disabled = true
 	isSAttacking = false# Replace with function body.
