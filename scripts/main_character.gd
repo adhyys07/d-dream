@@ -27,27 +27,22 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 
-	# --- Gravity (CORRECTED) ---
-	# Apply the full gravity vector to the full velocity vector.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# --- Jump ---
+		
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not isSAttacking:
 		velocity.y = jump_force
 	if Input.is_action_just_released("jump") and velocity.y < 0 and not isSAttacking:
 		velocity.y *= decelerate_on_jump_release
 
-	# --- Movement Speed and Direction ---
 	var speed = run_SPEED if Input.is_action_pressed("dash") and not isSAttacking else walk_SPEED
 	var direction = Input.get_axis("left", "right")
 
-	# --- ATTACKS ---
 	if Input.is_action_just_pressed("attack") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
 		$AttackArea2/CollisionShape2D.disabled = false
-		animated_sprite.play("attack") # Assumes you have an animation named "attack"
+		animated_sprite.play("attack")
 		$Timer.start()
 
 	if Input.is_action_just_pressed("attack_r") and not isSAttacking:
@@ -64,15 +59,13 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("attack-s")
 		return
 
-	# --- Walk / Idle / Deceleration (CORRECTED LOGIC) ---
 	if direction != 0 and not isSAttacking:
 		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
-		# Only play the animation if it's not already playing
+
 		if animated_sprite.animation != "walk":
 			animated_sprite.play("walk")
 		animated_sprite.scale.x = abs(animated_sprite.scale.x) * (1 if direction > 0 else -1)
 	else:
-		# This now handles deceleration for both idle and attacking states.
 		velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
 		if not isSAttacking:
 			# Only play the animation if it's not already playing
@@ -81,12 +74,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# --- Attack Area position using scale.x ---
 	attack_area.position.x = attack_offset.x * sign(animated_sprite.scale.x)
 	attack_area.position.y = attack_offset.y
 
 
-# --- Reset attack when animation finishes ---
 func _on_animated_sprite_2d_animation_finished() -> void:
 	var anim = animated_sprite.animation
 	if anim == "attack-s" or anim == "attack-f":
@@ -95,7 +86,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		isSAttacking = false
 
 
-# --- Player death ---
 func die() -> void:
 	is_dead = true
 	print("💀 Player died!")
