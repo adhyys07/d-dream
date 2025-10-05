@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://djd4u30qmx1oi"]
+[gd_scene load_steps=6 format=3 uid="uid://djd4u30qmx1oi"]
 
-[ext_resource type="Script" uid="uid://bj0xrvp774goh" path="res://scenes/levels/l_2.gd" id="1_k3wln"]
+[ext_resource type="Script" uid="uid://bj0xrvp774goh" path="res://scripts/l_2.gd" id="1_k3wln"]
 [ext_resource type="Texture2D" uid="uid://dtstsj174kpt1" path="res://assets/l_assets/bg3.png" id="2_k3wln"]
 [ext_resource type="PackedScene" uid="uid://bgirffyldpknx" path="res://scenes/levels/Spawn.tscn" id="3_x8aom"]
+[ext_resource type="PackedScene" uid="uid://y5npnb6oqfxm" path="res://scenes/characters/mc.tscn" id="4_cmiig"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_611f3"]
 distance = -183.0
@@ -47,5 +48,8 @@ position = Vector2(143, 686)
 [node name="Spawn2" parent="." instance=ExtResource("3_x8aom")]
 position = Vector2(1144, 682)
 script = null
+
+[node name="main_character" parent="Spawn2" instance=ExtResource("4_cmiig")]
+position = Vector2(-794, -150)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
