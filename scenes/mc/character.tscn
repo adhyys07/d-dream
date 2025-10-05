@@ -44,7 +44,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6xqna")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 7.0
 }]
 
@@ -54,14 +54,15 @@ script = ExtResource("1_t3ymk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t3ymk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lyk6d")
-autoplay = "default"
-frame_progress = 0.6489849
+animation = &"idle"
+autoplay = "idle"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+[node name="Camera2D" type="Camera2D" parent="." groups=["player"]]
+position = Vector2(35, -341)
+zoom = Vector2(1.1, 1.2)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
