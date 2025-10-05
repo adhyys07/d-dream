@@ -27,8 +27,10 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 
-	# --- Gravity ---
-	velocity += get_gravity() * delta
+	# --- Gravity (CORRECTED) ---
+	# Apply the full gravity vector to the full velocity vector.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
 	# --- Jump ---
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not isSAttacking:
@@ -45,35 +47,37 @@ func _physics_process(delta: float) -> void:
 		isSAttacking = true
 		attack_shape.disabled = false
 		$AttackArea2/CollisionShape2D.disabled = false
-		velocity.x = 0
+		animated_sprite.play("attack") # Assumes you have an animation named "attack"
 		$Timer.start()
-		return
 
 	if Input.is_action_just_pressed("attack_r") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
 		$AttackArea2/CollisionShape2D.disabled = false
-		velocity.x = 0
 		animated_sprite.play("attack-f")
 		return
 
 	if Input.is_action_just_pressed("attack_w") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
-		$AttackArea2/CollisionShape2D.disabled = false 
-		velocity.x = 0
+		$AttackArea2/CollisionShape2D.disabled = false
 		animated_sprite.play("attack-s")
 		return
 
-	# --- Walk / Idle ---
-	if not isSAttacking:
-		if direction != 0:
-			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
+	# --- Walk / Idle / Deceleration (CORRECTED LOGIC) ---
+	if direction != 0 and not isSAttacking:
+		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
+		# Only play the animation if it's not already playing
+		if animated_sprite.animation != "walk":
 			animated_sprite.play("walk")
-			animated_sprite.scale.x = abs(animated_sprite.scale.x) * (1 if direction > 0 else -1)
-		else:
-			velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
-			animated_sprite.play("idle")
+		animated_sprite.scale.x = abs(animated_sprite.scale.x) * (1 if direction > 0 else -1)
+	else:
+		# This now handles deceleration for both idle and attacking states.
+		velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
+		if not isSAttacking:
+			# Only play the animation if it's not already playing
+			if animated_sprite.animation != "idle":
+				animated_sprite.play("idle")
 
 	move_and_slide()
 
@@ -85,7 +89,7 @@ func _physics_process(delta: float) -> void:
 # --- Reset attack when animation finishes ---
 func _on_animated_sprite_2d_animation_finished() -> void:
 	var anim = animated_sprite.animation
-	if anim == "attack-r" or anim == "attack-f":
+	if anim == "attack-s" or anim == "attack-f":
 		attack_shape.disabled = true
 		$AttackArea2/CollisionShape2D.disabled = true
 		isSAttacking = false
@@ -103,4 +107,4 @@ func die() -> void:
 func _on_timer_timeout() -> void:
 	attack_shape.disabled = true
 	$AttackArea2/CollisionShape2D.disabled = true
-	isSAttacking = false# Replace with function body.
+	isSAttacking = false
