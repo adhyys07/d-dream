@@ -434,6 +434,7 @@ shape = SubResource("CapsuleShape2D_tclne")
 
 [node name="AttackArea" type="Area2D" parent="." groups=["player"]]
 position = Vector2(2, 1)
+collision_layer = 2
 script = ExtResource("9_wl0ab")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
@@ -442,6 +443,7 @@ shape = SubResource("CapsuleShape2D_wl0ab")
 
 [node name="AttackArea2" type="Area2D" parent="." groups=["player"]]
 position = Vector2(-74, 0)
+collision_layer = 2
 script = ExtResource("10_yd3on")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2"]
