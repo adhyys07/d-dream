@@ -48,7 +48,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_t3ymk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -58,4 +58,11 @@ shape = SubResource("CapsuleShape2D_t3ymk")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lyk6d")
 autoplay = "default"
-frame_progress = 0.70235795
+frame_progress = 0.6489849
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
