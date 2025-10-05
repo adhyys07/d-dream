@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://y5npnb6oqfxm"]
+[gd_scene load_steps=67 format=3 uid="uid://y5npnb6oqfxm"]
 
 [ext_resource type="Script" uid="uid://b4fum2qn6tpev" path="res://scripts/main_character.gd" id="1_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://dw8u56xlxcget" path="res://assets/mc_assets/Sprite Sheet/Attack 1.png" id="2_cemo4"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cuqmwnbe1d1hl" path="res://assets/mc_assets/Sprite Sheet/new/mid-Attack 3.png" id="4_kwoov"]
 [ext_resource type="Texture2D" uid="uid://cwtiwwpjf0pnq" path="res://assets/mc_assets/Sprite Sheet/walk.png" id="5_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d23fvm7i0owp5" path="res://assets/mc_assets/Sprite Sheet/new/end-Attack 3.png" id="5_wl0ab"]
+[ext_resource type="Script" uid="uid://c4fuqvnevtt0d" path="res://scenes/characters/attack_area.gd" id="9_wl0ab"]
+[ext_resource type="Script" uid="uid://bj0nxn6im0g3a" path="res://scenes/characters/attack_area_2.gd" id="10_yd3on"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwoov"]
 radius = 21.0
@@ -432,6 +434,7 @@ shape = SubResource("CapsuleShape2D_tclne")
 
 [node name="AttackArea" type="Area2D" parent="." groups=["player"]]
 position = Vector2(2, 1)
+script = ExtResource("9_wl0ab")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(24, 13)
@@ -439,6 +442,7 @@ shape = SubResource("CapsuleShape2D_wl0ab")
 
 [node name="AttackArea2" type="Area2D" parent="." groups=["player"]]
 position = Vector2(-74, 0)
+script = ExtResource("10_yd3on")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2"]
 position = Vector2(24, 13)
@@ -448,4 +452,6 @@ shape = SubResource("CapsuleShape2D_wl0ab")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="AttackArea" to="AttackArea" method="_on_body_entered"]
+[connection signal="body_entered" from="AttackArea2" to="AttackArea2" method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
