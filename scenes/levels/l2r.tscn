@@ -15,7 +15,7 @@ distance = -512.0
 [node name="L2r" type="Node2D"]
 script = ExtResource("1_t36bo")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_df6jv")
@@ -43,5 +43,9 @@ position = Vector2(63, 374)
 
 [node name="Spawn2" parent="." instance=ExtResource("3_tjp53")]
 position = Vector2(530, 362)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

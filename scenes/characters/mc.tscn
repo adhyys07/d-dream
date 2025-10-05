@@ -425,8 +425,6 @@ position = Vector2(-9, 0)
 sprite_frames = SubResource("SpriteFrames_tclne")
 animation = &"attack-s"
 autoplay = "idle"
-frame = 1
-frame_progress = 0.38763624
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12, 13)
@@ -446,5 +444,8 @@ position = Vector2(-74, 0)
 position = Vector2(24, 13)
 shape = SubResource("CapsuleShape2D_wl0ab")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -48,6 +48,3 @@ func _physics_process(delta: float) -> void:
 	if abs(velocity.x) > 0.1:
 		if $AnimatedSprite2D.animation != "walk":
 			$AnimatedSprite2D.play("walk")
-	else:
-		if $AnimatedSprite2D.animation != "idle":
-			$AnimatedSprite2D.play("idle")

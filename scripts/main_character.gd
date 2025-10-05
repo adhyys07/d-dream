@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var jump_force = -400.0
 @export_range(0, 1) var decelerate_on_jump_release = 0.5
 
-var isSAttacking = false
+var isSAttacking: bool = false
 var is_dead: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,6 +19,7 @@ var attack_offset: Vector2
 func _ready() -> void:
 	attack_offset = attack_area.position
 	attack_shape.disabled = true
+
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -33,16 +34,31 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump") and velocity.y < 0 and not isSAttacking:
 		velocity.y *= decelerate_on_jump_release
 
-	# --- Movement ---
+	# --- Movement Speed and Direction ---
 	var speed = run_SPEED if Input.is_action_pressed("dash") and not isSAttacking else walk_SPEED
 	var direction = Input.get_axis("left", "right")
 
-	# --- Attack ---
+	# --- ATTACKS ---
 	if Input.is_action_just_pressed("attack") and not isSAttacking:
 		isSAttacking = true
 		attack_shape.disabled = false
 		velocity.x = 0
-		return # 🟢 Stop further movement this frame to let attack start cleanly
+		$Timer.start()
+		return
+
+	if Input.is_action_just_pressed("attack_r") and not isSAttacking:
+		isSAttacking = true
+		attack_shape.disabled = false
+		velocity.x = 0
+		animated_sprite.play("attack-f")
+		return
+
+	if Input.is_action_just_pressed("attack_w") and not isSAttacking:
+		isSAttacking = true
+		attack_shape.disabled = false
+		velocity.x = 0
+		animated_sprite.play("attack-s")
+		return
 
 	# --- Walk / Idle ---
 	if not isSAttacking:
@@ -56,15 +72,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# --- Move AttackArea in front of player using scale.x instead of flip_h ---
+	# --- Attack Area position using scale.x ---
 	attack_area.position.x = attack_offset.x * sign(animated_sprite.scale.x)
 	attack_area.position.y = attack_offset.y
 
+
 # --- Reset attack when animation finishes ---
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite.animation == "attack-s":
+	var anim = animated_sprite.animation
+	if anim == "attack-r" or anim == "attack-f":
 		attack_shape.disabled = true
 		isSAttacking = false
+
 
 # --- Player death ---
 func die() -> void:
@@ -73,3 +92,8 @@ func die() -> void:
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
 	get_tree().reload_current_scene()
+
+
+func _on_timer_timeout() -> void:
+	attack_shape.disabled = true
+	isSAttacking = false# Replace with function body.

@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_spawn_timer_timeout() -> void:
+func _on_timer_timeout() -> void:
 	var enemy = Enemy.instantiate()
 	var enemy2 = Enemy.instantiate()
 	add_child(enemy)
