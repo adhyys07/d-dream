@@ -1,12 +1,17 @@
-[gd_scene load_steps=62 format=3 uid="uid://y5npnb6oqfxm"]
+[gd_scene load_steps=64 format=3 uid="uid://y5npnb6oqfxm"]
 
 [ext_resource type="Script" uid="uid://b4fum2qn6tpev" path="res://scripts/main_character.gd" id="1_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://dw8u56xlxcget" path="res://assets/mc_assets/Sprite Sheet/Attack 1.png" id="2_cemo4"]
+[ext_resource type="Script" uid="uid://87dgxej54tqp" path="res://scenes/characters/mcarea.gd" id="2_kwoov"]
 [ext_resource type="Texture2D" uid="uid://bskw2hvyhqqbi" path="res://assets/mc_assets/Sprite Sheet/idle.png" id="2_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d3r3vyo6oafjy" path="res://assets/mc_assets/Sprite Sheet/new/Pre-Attack 3.png" id="3_tclne"]
 [ext_resource type="Texture2D" uid="uid://cuqmwnbe1d1hl" path="res://assets/mc_assets/Sprite Sheet/new/mid-Attack 3.png" id="4_kwoov"]
 [ext_resource type="Texture2D" uid="uid://cwtiwwpjf0pnq" path="res://assets/mc_assets/Sprite Sheet/walk.png" id="5_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d23fvm7i0owp5" path="res://assets/mc_assets/Sprite Sheet/new/end-Attack 3.png" id="5_wl0ab"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwoov"]
+radius = 26.0
+height = 66.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6f1yw"]
 atlas = ExtResource("2_cemo4")
@@ -216,7 +221,7 @@ region = Rect2(2964, 0, 247, 87)
 atlas = ExtResource("5_mi4vj")
 region = Rect2(3211, 0, 247, 87)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3n4xf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tclne"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -395,64 +400,29 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ol05w"]
-radius = 7.0
-height = 52.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tclne"]
+radius = 18.0
+height = 58.0
 
-[node name="mc" type="Node2D"]
-
-[node name="main_character" type="CharacterBody2D" parent="." node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
+[node name="main_character" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mi4vj")
-README = null
-PlayerSprite = NodePath("AnimatedSprite2D")
-PlayerCollider = NodePath("CollisionShape2D")
-maxSpeed = null
-timeToReachMaxSpeed = null
-timeToReachZeroSpeed = null
-directionalSnap = null
-runningModifier = null
-jumpHeight = null
-jumps = null
-gravityScale = null
-terminalVelocity = null
-descendingGravityFactor = null
-shortHopAkaVariableJumpHeight = null
-coyoteTime = null
-jumpBuffering = null
-wallJump = null
-inputPauseAfterWallJump = null
-wallKickAngle = null
-wallSliding = null
-wallLatching = null
-wallLatchingModifer = null
-dashType = null
-dashes = null
-dashCancel = null
-dashLength = null
-cornerCutting = null
-correctionAmount = null
-crouch = null
-canRoll = null
-rollLength = null
-groundPound = null
-groundPoundPause = null
-upToCancel = null
-run = null
-jump = null
-idle = null
-slide = null
-latch = null
-falling = null
-crouch_idle = null
-crouch_walk = null
-roll = null
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+position = Vector2(1, 33)
+script = ExtResource("2_kwoov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-16, -19)
+shape = SubResource("CapsuleShape2D_kwoov")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_3n4xf")
+sprite_frames = SubResource("SpriteFrames_tclne")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main_character"]
-position = Vector2(-15, 12)
-shape = SubResource("CapsuleShape2D_ol05w")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-14, 14)
+shape = SubResource("CapsuleShape2D_tclne")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
