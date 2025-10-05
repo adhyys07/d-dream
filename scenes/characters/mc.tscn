@@ -347,11 +347,6 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
-"frames": [],
-"loop": false,
-"name": &"jump",
-"speed": 6.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yr72a")
@@ -455,9 +450,8 @@ roll = null
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3n4xf")
-animation = &"attack-s"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.6286224
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main_character"]
 position = Vector2(-15, 12)
