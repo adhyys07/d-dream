@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://djwls2gqhum0u" path="res://assets/hand_assets/2025_10_04_0pz_Kleki.png" id="1_h2liu"]
 [ext_resource type="Script" uid="uid://beoddu0ulrbe8" path="res://scripts/follow_enemy.gd" id="1_krgbn"]
 [ext_resource type="Texture2D" uid="uid://dcq5tj4t24lhy" path="res://assets/hand_assets/2025_10_04_0q2_Kleki.png" id="2_a8x0k"]
-[ext_resource type="Script" uid="uid://ct1jcjtw0ucfg" path="res://scenes/characters/enemy1.gd" id="4_wmkw4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5x2f"]
 radius = 19.0
@@ -22,6 +21,14 @@ animations = [{
 "name": &"walk",
 "speed": 5.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_krgbn"]
+script/source = "extends Area2D
+
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.is_in_group(\"player\"):
+		print(\"sup\")
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dt4n"]
 radius = 22.0
@@ -44,7 +51,7 @@ autoplay = "walk"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(-51, -128)
-script = ExtResource("4_wmkw4")
+script = SubResource("GDScript_krgbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
 position = Vector2(0, -4)

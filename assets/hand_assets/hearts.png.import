@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://danw5p4jmd366"
-path="res://.godot/imported/JumpDown.png-58073036ea1795f0149e00412dfd20b3.ctex"
+uid="uid://bd8juyl1eoaii"
+path="res://.godot/imported/hearts.png-5a32dd3579d7103c215db04c833164f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/c_assets/JumpDown.png"
-dest_files=["res://.godot/imported/JumpDown.png-58073036ea1795f0149e00412dfd20b3.ctex"]
+source_file="res://assets/hand_assets/hearts.png"
+dest_files=["res://.godot/imported/hearts.png-5a32dd3579d7103c215db04c833164f3.ctex"]
 
 [params]
 

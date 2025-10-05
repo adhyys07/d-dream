@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwwwo738yd8ay"]
+[gd_scene load_steps=7 format=3 uid="uid://bwwwo738yd8ay"]
 
 [ext_resource type="Texture2D" uid="uid://bne7m6b8a3435" path="res://assets/hand_assets/2025_10_04_0tm_Kleki.png" id="1_ynohy"]
+[ext_resource type="PackedScene" uid="uid://y5npnb6oqfxm" path="res://scenes/characters/mc.tscn" id="2_0ks8d"]
+[ext_resource type="Texture2D" uid="uid://bd8juyl1eoaii" path="res://assets/hand_assets/hearts.png" id="3_gg58m"]
+[ext_resource type="PackedScene" uid="uid://b8w2qrv1fjuuh" path="res://scenes/characters/enemy1.tscn" id="4_5al82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg58m"]
+size = Vector2(3, 679)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ks8d"]
+size = Vector2(1232, 2.875)
 
 [node name="L1" type="Node2D"]
 
@@ -10,3 +19,42 @@ offset_right = 1271.0
 offset_bottom = 728.0
 texture = ExtResource("1_ynohy")
 expand_mode = 1
+
+[node name="main_character" parent="." instance=ExtResource("2_0ks8d")]
+position = Vector2(623, 624)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(641, 374)
+zoom = Vector2(1.03, 1.2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23, 350)
+shape = SubResource("RectangleShape2D_gg58m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(639, 672.4375)
+shape = SubResource("RectangleShape2D_0ks8d")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1261.5, 329.5)
+shape = SubResource("RectangleShape2D_gg58m")
+
+[node name="Hearts" type="Sprite2D" parent="."]
+position = Vector2(233.99998, 86)
+scale = Vector2(0.71, 0.689)
+texture = ExtResource("3_gg58m")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_5al82")]
+position = Vector2(222, 774)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_5al82")]
+position = Vector2(405, 776)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("4_5al82")]
+position = Vector2(908, 777)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("4_5al82")]
+position = Vector2(1047, 778)
+metadata/_edit_lock_ = true
