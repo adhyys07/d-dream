@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwwwo738yd8ay"]
 
-[ext_resource type="Texture2D" uid="uid://dtstsj174kpt1" path="res://assets/l_assets/bg3.png" id="1_ynohy"]
+[ext_resource type="Texture2D" uid="uid://bne7m6b8a3435" path="res://assets/hand_assets/2025_10_04_0tm_Kleki.png" id="1_ynohy"]
 
 [node name="L1" type="Node2D"]
 
