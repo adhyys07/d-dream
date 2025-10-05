@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://y7pcuxiyur72"]
+[gd_scene load_steps=9 format=3 uid="uid://y7pcuxiyur72"]
 
 [ext_resource type="Script" uid="uid://blcptllyfxcos" path="res://scenes/levels/l_2w.gd" id="1_8kqa1"]
 [ext_resource type="Texture2D" uid="uid://da6ql8xfd5hs3" path="res://assets/hand_assets/WhatsApp Image 2025-10-05 at 15.24.26.jpeg" id="1_vo3u5"]
 [ext_resource type="PackedScene" uid="uid://bgirffyldpknx" path="res://scenes/levels/Spawn.tscn" id="3_uxflg"]
+[ext_resource type="Texture2D" uid="uid://b6pjexgmro36h" path="res://assets/hand_assets/image-removebg-preview-removebg-preview.png" id="4_m31gm"]
+[ext_resource type="PackedScene" uid="uid://y5npnb6oqfxm" path="res://scenes/characters/mc.tscn" id="5_7stg1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8kqa1"]
 distance = -383.0
@@ -41,8 +43,13 @@ position = Vector2(427, 317)
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="HP" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.32, 0.27999997)
+texture = ExtResource("4_m31gm")
+
+[node name="main_character" parent="." instance=ExtResource("5_7stg1")]
+position = Vector2(305, 329)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
