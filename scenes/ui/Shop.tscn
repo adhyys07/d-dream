@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2smrg2o64px0"]
+
+[ext_resource type="Texture2D" uid="uid://rrc33gcvx7r1" path="res://assets/hand_assets/WhatsApp Image 2025-10-05 at 10.34.27.jpeg" id="1_7jiqd"]
+[ext_resource type="Script" uid="uid://bfsti3b43nvkd" path="res://scenes/ui/shop.gd" id="1_cd442"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_cd442")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1277.0
+offset_bottom = 727.0
+texture = ExtResource("1_7jiqd")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 167.0
+offset_top = 279.0
+offset_right = 175.0
+offset_bottom = 287.0
+scale = Vector2(40.1889, -16.253475)
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 839.00006
+offset_top = 288.0
+offset_right = 847.00006
+offset_bottom = 296.0
+scale = Vector2(40.1889, -16.253475)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

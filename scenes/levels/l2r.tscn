@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://biwaa1fsbj54q"]
+
+[ext_resource type="Texture2D" uid="uid://ckfrqy2d2gplb" path="res://assets/hand_assets/WhatsApp Image 2025-10-05 at 15.24.25.jpeg" id="1_df6jv"]
+[ext_resource type="Script" uid="uid://breh63phh4085" path="res://scenes/levels/l_2r.gd" id="1_t36bo"]
+[ext_resource type="PackedScene" uid="uid://bgirffyldpknx" path="res://scenes/levels/Spawn.tscn" id="3_tjp53"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_df6jv"]
+distance = -416.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t36bo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tjp53"]
+distance = -512.0
+
+[node name="L2r" type="Node2D"]
+script = ExtResource("1_t36bo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_df6jv")
+
+[node name="Border" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_df6jv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_t36bo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(116, 0)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_tjp53")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Spawn" parent="." instance=ExtResource("3_tjp53")]
+position = Vector2(63, 374)
+
+[node name="Spawn2" parent="." instance=ExtResource("3_tjp53")]
+position = Vector2(530, 362)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
