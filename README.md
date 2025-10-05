@@ -14,7 +14,7 @@ Zip through tear-stained pages, dodge paper crumples, and crack devilish doodle 
 Exorcise the big bad—'cause homework just got hella fun!
 
 ### Something is waiting, come and get it
-![image](https://github.com/adhyys07/d-dream/blob/main/WhatsApp_Image_2025-10-05_at_14.45.25-removebg-preview.png?raw=true)
+![image](https://github.com/adhyys07/d-dream/blob/main/demon.png?raw=true)
 
 Made with love (and graphite) in GODOT
 
