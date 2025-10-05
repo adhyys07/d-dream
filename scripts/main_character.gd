@@ -127,17 +127,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	# Check if the animation that just finished was one of the attacks.
 	if anim == "attack" or anim == "attack-s" or anim == "attack-f":
 		isSAttacking = false
-		# The timer handles the hitbox for the main "attack",
-		# but for the others, we disable them here as soon as the animation is done.
 		attack_shape.disabled = true
 		$AttackArea2/CollisionShape2D.disabled = true
 
-# This timer's ONLY job is to disable the hitboxes. It no longer touches player state.
 func _on_timer_timeout() -> void:
 	attack_shape.disabled = true
 	$AttackArea2/CollisionShape2D.disabled = true
 
-# --- DEATH FUNCTION ---
 func die() -> void:
 	if is_dead: return
 	is_dead = true
