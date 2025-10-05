@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cuqmwnbe1d1hl" path="res://assets/mc_assets/Sprite Sheet/new/mid-Attack 3.png" id="4_kwoov"]
 [ext_resource type="Texture2D" uid="uid://cwtiwwpjf0pnq" path="res://assets/mc_assets/Sprite Sheet/walk.png" id="5_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d23fvm7i0owp5" path="res://assets/mc_assets/Sprite Sheet/new/end-Attack 3.png" id="5_wl0ab"]
-[ext_resource type="Script" uid="uid://c4fuqvnevtt0d" path="res://scenes/characters/attack_area.gd" id="9_wl0ab"]
-[ext_resource type="Script" uid="uid://bj0nxn6im0g3a" path="res://scenes/characters/attack_area_2.gd" id="10_yd3on"]
+[ext_resource type="Script" path="res://scenes/characters/attack_area.gd" id="9_wl0ab"]
+[ext_resource type="Script" path="res://scenes/characters/attack_area_2.gd" id="10_yd3on"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwoov"]
 radius = 21.0
