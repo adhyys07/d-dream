@@ -1,16 +1,49 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgq2rm0cfne7t"]
 
-[ext_resource type="Texture2D" uid="uid://lbxw5pkidk3n" path="res://assets/hand_assets/2025_10_04_0lo_Kleki.png" id="1_fe2o3"]
-[ext_resource type="Texture2D" uid="uid://yi7tbcwbj7n5" path="res://assets/hand_assets/2025_10_04_0lq_Kleki.png" id="2_1g8jr"]
+[ext_resource type="Script" uid="uid://bt6qsqv30ca2p" path="res://scripts/main_menu.gd" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://ycd4prbu2nep" path="res://assets/l_assets/MM.jpg" id="1_sl1te"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe2o3")
 
-[node name="202510040LoKleki" type="Sprite2D" parent="."]
-position = Vector2(561.8906, 464.87497)
-scale = Vector2(0.33208722, 0.38081396)
-texture = ExtResource("1_fe2o3")
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(634, 346)
 
-[node name="202510040LqKleki" type="Sprite2D" parent="."]
-position = Vector2(583.00006, 342.00003)
-scale = Vector2(0.2840409, 0.32267436)
-texture = ExtResource("2_1g8jr")
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -27.0
+offset_right = 1270.0
+offset_bottom = 690.0
+texture = ExtResource("1_sl1te")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.223
+anchor_top = 0.231
+anchor_right = 0.58400005
+anchor_bottom = 0.592
+offset_left = 215.56
+offset_top = 159.68
+offset_right = -4.5200806
+offset_bottom = -30.23999
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.39100003
+anchor_bottom = 0.58500004
+offset_left = 500.0
+offset_top = 535.0
+offset_right = 200.51996
+offset_bottom = 175.79999
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
