@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cwtiwwpjf0pnq" path="res://assets/mc_assets/Sprite Sheet/walk.png" id="5_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d23fvm7i0owp5" path="res://assets/mc_assets/Sprite Sheet/new/end-Attack 3.png" id="5_wl0ab"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ol05w"]
+radius = 7.0
+height = 52.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6f1yw"]
 atlas = ExtResource("2_cemo4")
 region = Rect2(0, 0, 247, 87)
@@ -400,22 +404,16 @@ animations = [{
 "speed": 18.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ol05w"]
-radius = 7.0
-height = 52.0
-
-[node name="mc" type="Node2D"]
-
-[node name="main_character" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="main_character" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_tclne")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_3n4xf")
-animation = &"attack-s"
-autoplay = "idle"
-frame_progress = 0.6286224
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main_character"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-15, 12)
 shape = SubResource("CapsuleShape2D_ol05w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3n4xf")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.7578749

@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export_range(0, 1) var decelerate_on_jump_release = 0.5 
 const JUMP_VELOCITY = -400.0
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
@@ -27,7 +29,10 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("left", "right")
 		if direction:
 					velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration) 
+					animated_sprite.play("walk")
+					animated_sprite.flip_h = direction < 0
+						
 		else:
 			velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
-
+			animated_sprite.play("idle")
 		move_and_slide()
