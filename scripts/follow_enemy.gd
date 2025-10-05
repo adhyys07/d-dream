@@ -1,37 +1,49 @@
 extends CharacterBody2D
 
-# Enemy settings
-@export var speed: float = 400.0
-@export var stop_distance: float = 200.0  # enemy stops when near player
+# --- Enemy Settings ---
+@export var speed: float = 200.0
+@export var stop_distance: float = 100.0  # stops when near player
 
-# Find player (must be in 'player' group)
-@onready var player: Node2D = get_tree().get_first_node_in_group("player")
+# --- Player Reference ---
+@onready var player: Node2D = null
+
+func _ready() -> void:
+	# Find the player in the scene by group
+	player = get_tree().get_first_node_in_group("player")
+	if player == null:
+		push_warning("⚠️ Player not found in 'player' group!")
 
 func _physics_process(delta: float) -> void:
-	if player == null:
+	# Validate player reference
+	if player == null or not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
 		if player == null:
-			print("⚠️ Player not found in group 'player'!")
 			velocity = Vector2.ZERO
 			move_and_slide()
 			return
 
-	var direction: Vector2 = position.direction_to(player.global_position)
-	var distance: float = position.distance_to(player.global_position)
+	# Direction and distance to player
+	var to_player: Vector2 = player.global_position - global_position
+	var distance: float = to_player.length()
 
+	# Move enemy only if player is beyond stop_distance
 	if distance > stop_distance:
+		var direction: Vector2 = to_player.normalized()
 		velocity = direction * speed
 	else:
 		velocity = Vector2.ZERO
 
+	# Move the enemy
 	move_and_slide()
 
-	if direction.x != 0:
-		$AnimatedSprite2D.flip_h = direction.x < 0
+	# --- Sprite flipping ---
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 
-	if velocity.length() > 0:
-		if not $AnimatedSprite2D.is_playing():
+	# --- Animation ---
+	if velocity.length() > 0.1:
+		if $AnimatedSprite2D.animation != "walk":
 			$AnimatedSprite2D.play("walk")
 	else:
-		$AnimatedSprite2D.play("idle")
-		
+		if $AnimatedSprite2D.animation != "idle":
+			$AnimatedSprite2D.play("idle")

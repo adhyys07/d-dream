@@ -5,7 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://dcq5tj4t24lhy" path="res://assets/hand_assets/2025_10_04_0q2_Kleki.png" id="2_a8x0k"]
 [ext_resource type="Script" uid="uid://ct1jcjtw0ucfg" path="res://scenes/characters/enemy1.gd" id="4_wmkw4"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_a8x0k"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5x2f"]
+radius = 19.0
+height = 48.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmkw4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -15,44 +19,36 @@ animations = [{
 "texture": ExtResource("2_a8x0k")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmkw4"]
-radius = 19.0
-height = 48.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5x2f"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dt4n"]
 radius = 22.0
 height = 60.0
 
-[node name="Enemy1" type="Node2D" groups=["enemy"]]
-position = Vector2(-1, 8)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemy"]]
-position = Vector2(4, -24)
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_krgbn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(-50, -130)
+shape = SubResource("CapsuleShape2D_n5x2f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-49, -130)
 scale = Vector2(0.06273526, 0.07466349)
-sprite_frames = SubResource("SpriteFrames_a8x0k")
-autoplay = "default"
-frame_progress = 0.2643154
+sprite_frames = SubResource("SpriteFrames_wmkw4")
+animation = &"walk"
+autoplay = "walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" groups=["enemy"]]
-position = Vector2(-50, -130)
-shape = SubResource("CapsuleShape2D_wmkw4")
-
-[node name="Area2D" type="Area2D" parent="CharacterBody2D" groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(-51, -128)
 script = ExtResource("4_wmkw4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" groups=["enemy"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
 position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_n5x2f")
+shape = SubResource("CapsuleShape2D_4dt4n")
 
-[node name="Timer" type="Timer" parent="CharacterBody2D"]
+[node name="Timer" type="Timer" parent="Area2D"]
 one_shot = true

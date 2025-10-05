@@ -1,54 +1,83 @@
 extends CharacterBody2D
 
 @export var walk_SPEED = 150.0
-@export var run_SPEED = 300
+@export var run_SPEED = 300.0
 @export_range(0, 1) var acceleration = 0.1
 @export_range(0, 1) var deceleration = 0.1
-@export var jump_force = -400
-@export_range(0, 1) var decelerate_on_jump_release = 0.5 
-const JUMP_VELOCITY = -400.0
+@export var jump_force = -400.0
+@export_range(0, 1) var decelerate_on_jump_release = 0.5
 
-@onready var animated_sprite = $AnimatedSprite2D
-
+var isSAttacking = false
 var is_dead: bool = false
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_area: Area2D = $AttackArea
+@onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
+
+# store original positions
+var attack_area_pos: Vector2
+var attack_shape_pos: Vector2
+
+func _ready() -> void:
+	attack_area_pos = attack_area.position
+	attack_shape_pos = attack_shape.position
+	attack_shape.disabled = true
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
-		return  # stop movement after death
+		return
 
-	# Gravity
+	# --- Gravity ---
 	velocity += get_gravity() * delta
 
-	# --- Jump handling ---
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_force 
-
-	if Input.is_action_just_released("jump") and velocity.y < 0:
+	# --- Jump ---
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not isSAttacking:
+		velocity.y = jump_force
+	if Input.is_action_just_released("jump") and velocity.y < 0 and not isSAttacking:
 		velocity.y *= decelerate_on_jump_release
 
 	# --- Movement ---
-	var speed
-	if Input.is_action_pressed("dash"):
-		speed = run_SPEED
-	else:
-		speed = walk_SPEED
+	var speed = run_SPEED if Input.is_action_pressed("dash") and not isSAttacking else walk_SPEED
+	var direction = Input.get_axis("left", "right")
 
-	var direction := Input.get_axis("left", "right")
+	# --- Attack ---
+	if Input.is_action_just_pressed("attack") and not isSAttacking:
+		isSAttacking = true
+		attack_shape.disabled = false
+		velocity.x = 0
+		animated_sprite.play("attack-s")
 
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
-		animated_sprite.play("walk")
-		animated_sprite.flip_h = direction < 0
+	# --- Walk/Idle ---
+	if not isSAttacking:
+		if direction != 0:
+			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
+			animated_sprite.play("walk")
+			animated_sprite.flip_h = direction < 0
+		else:
+			velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
+			animated_sprite.play("idle")
+			attack_shape.disabled = true
+
+	# --- Flip attack collision properly ---
+	if animated_sprite.flip_h:
+		attack_area.position.x = -attack_area_pos.x
+		attack_shape.position.x = -attack_shape_pos.x
 	else:
-		velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
-		animated_sprite.play("idle")
+		attack_area.position = attack_area_pos
+		attack_shape.position = attack_shape_pos
 
 	move_and_slide()
 
-# --- Handle player death ---
+# --- Reset attack when animation finishes ---
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite.animation == "attack-s":
+		attack_shape.disabled = true
+		isSAttacking = false
+
+# --- Player death ---
 func die() -> void:
 	is_dead = true
 	print("💀 Player died!")
-	animated_sprite.play("death") # optional animation
+	animated_sprite.play("death")
 	await animated_sprite.animation_finished
-	get_tree().reload_current_scene()  # restart the level
+	get_tree().reload_current_scene()
