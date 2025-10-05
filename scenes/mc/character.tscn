@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv1qncivk81gg"]
+
+[ext_resource type="Script" uid="uid://2na1w0bfi43v" path="res://scenes/mc/character.gd" id="1_t3ymk"]
+[ext_resource type="Texture2D" uid="uid://bdqfnx65jayl1" path="res://scenes/mc/Animation Sprite Sheets (PNG)/PassiveIdleReaper-Sheet.png" id="1_w57xx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3ymk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxhy5"]
+atlas = ExtResource("1_w57xx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uemi"]
+atlas = ExtResource("1_w57xx")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8htm"]
+atlas = ExtResource("1_w57xx")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdgu3"]
+atlas = ExtResource("1_w57xx")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xqna"]
+atlas = ExtResource("1_w57xx")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyk6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxhy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uemi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8htm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdgu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xqna")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_t3ymk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t3ymk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lyk6d")
+autoplay = "default"
+frame_progress = 0.70235795
