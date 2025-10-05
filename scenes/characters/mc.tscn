@@ -421,6 +421,7 @@ shape = SubResource("CapsuleShape2D_kwoov")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-9, 0)
 sprite_frames = SubResource("SpriteFrames_tclne")
 animation = &"attack-s"
 autoplay = "idle"
@@ -428,12 +429,20 @@ frame = 1
 frame_progress = 0.38763624
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-14, 14)
+position = Vector2(-12, 13)
 shape = SubResource("CapsuleShape2D_tclne")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=["player"]]
+position = Vector2(2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(24, 13)
+shape = SubResource("CapsuleShape2D_wl0ab")
+
+[node name="AttackArea2" type="Area2D" parent="." groups=["player"]]
+position = Vector2(-74, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2"]
 position = Vector2(24, 13)
 shape = SubResource("CapsuleShape2D_wl0ab")
 

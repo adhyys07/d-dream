@@ -14,7 +14,6 @@ var is_dead: bool = false
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 
-# store original offset of attack relative to player
 var attack_offset: Vector2
 
 func _ready() -> void:
@@ -43,24 +42,23 @@ func _physics_process(delta: float) -> void:
 		isSAttacking = true
 		attack_shape.disabled = false
 		velocity.x = 0
-		animated_sprite.play("attack-s")
+		return # 🟢 Stop further movement this frame to let attack start cleanly
 
-	# --- Walk/Idle ---
+	# --- Walk / Idle ---
 	if not isSAttacking:
 		if direction != 0:
 			velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 			animated_sprite.play("walk")
-			animated_sprite.flip_h = direction < 0
+			animated_sprite.scale.x = abs(animated_sprite.scale.x) * (1 if direction > 0 else -1)
 		else:
 			velocity.x = move_toward(velocity.x, 0, walk_SPEED * deceleration)
 			animated_sprite.play("idle")
-			attack_shape.disabled = true
-
-	# --- Move AttackArea in front of player without flipping collision ---
-	attack_area.position.x = attack_offset.x if not animated_sprite.flip_h else -attack_offset.x
-	attack_area.position.y = attack_offset.y
 
 	move_and_slide()
+
+	# --- Move AttackArea in front of player using scale.x instead of flip_h ---
+	attack_area.position.x = attack_offset.x * sign(animated_sprite.scale.x)
+	attack_area.position.y = attack_offset.y
 
 # --- Reset attack when animation finishes ---
 func _on_animated_sprite_2d_animation_finished() -> void:
