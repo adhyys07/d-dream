@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://y5npnb6oqfxm"]
 
-[ext_resource type="Script" uid="uid://b4fum2qn6tpev" path="res://scripts/main_character.gd" id="1_mi4vj"]
+[ext_resource type="Script" uid="uid://u654yqo2uxxo" path="res://scenes/characters/main_character.gd" id="1_tclne"]
 [ext_resource type="Texture2D" uid="uid://dw8u56xlxcget" path="res://assets/mc_assets/Sprite Sheet/Attack 1.png" id="2_cemo4"]
 [ext_resource type="Texture2D" uid="uid://bskw2hvyhqqbi" path="res://assets/mc_assets/Sprite Sheet/idle.png" id="2_mi4vj"]
 [ext_resource type="Texture2D" uid="uid://d3r3vyo6oafjy" path="res://assets/mc_assets/Sprite Sheet/new/Pre-Attack 3.png" id="3_tclne"]
@@ -406,51 +406,8 @@ height = 52.0
 
 [node name="mc" type="Node2D"]
 
-[node name="main_character" type="CharacterBody2D" parent="." node_paths=PackedStringArray("PlayerSprite", "PlayerCollider") groups=["player"]]
-script = ExtResource("1_mi4vj")
-README = null
-PlayerSprite = NodePath("AnimatedSprite2D")
-PlayerCollider = NodePath("CollisionShape2D")
-maxSpeed = null
-timeToReachMaxSpeed = null
-timeToReachZeroSpeed = null
-directionalSnap = null
-runningModifier = null
-jumpHeight = null
-jumps = null
-gravityScale = null
-terminalVelocity = null
-descendingGravityFactor = null
-shortHopAkaVariableJumpHeight = null
-coyoteTime = null
-jumpBuffering = null
-wallJump = null
-inputPauseAfterWallJump = null
-wallKickAngle = null
-wallSliding = null
-wallLatching = null
-wallLatchingModifer = null
-dashType = null
-dashes = null
-dashCancel = null
-dashLength = null
-cornerCutting = null
-correctionAmount = null
-crouch = null
-canRoll = null
-rollLength = null
-groundPound = null
-groundPoundPause = null
-upToCancel = null
-run = null
-jump = null
-idle = null
-slide = null
-latch = null
-falling = null
-crouch_idle = null
-crouch_walk = null
-roll = null
+[node name="main_character" type="CharacterBody2D" parent="." groups=["player"]]
+script = ExtResource("1_tclne")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="main_character"]
 texture_filter = 1
